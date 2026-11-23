@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Toutes les offres - Espace Avantages (V5)</title>
+    <!--
+      V5 : reprise de la maquette V4 d'Emmanuelle (RnD) avec les remarques du 18/11/2026
+      - Logo l'Auditorium en haut à gauche, « Réservé aux abonnés » en petit, logo Radio France noir à droite
+      - Polices de la newsletter et du site de la Maison de la Radio : Castoro (titres), Fira Sans (texte)
+      - Plus de bleu Radio France : boutons noirs comme les boutons « Réserver » du site de la Maison de la Radio
+      - Peu de noir / gris foncé : fonds blancs et crème
+      - Pas de bloc « Rechercher une offre » sur la home : bouton « Voir toutes les offres »
+      - Carrousel : photo dominante, titre court qui ne recouvre plus l'image, bouton plus discret
+      - Plus d'offres visibles, boutons hiérarchisés, présentation de l'EA en 3 points
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Castoro:ital@0;1&family=Fira+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'au-ink': '#212529',     // texte et boutons (site Maison de la Radio)
+                        'au-grey': '#727272',    // infos secondaires
+                        'au-cream': '#FBF8F6',   // fonds de mise en avant
+                        'au-line': '#E7E2DD',    // filets
+                        'fm': '#A80041',         // pastille France Musique (NL)
+                        'fc': '#752A83',         // pastille France Culture (NL)
+                        'fi': '#E20134'          // pastille France Inter (à confirmer)
+                    },
+                    fontFamily: {
+                        serif: ['Castoro', 'Georgia', 'serif'],
+                        sans: ['"Fira Sans"', 'Arial', 'sans-serif'],
+                        nl: ['Georgia', '"Times New Roman"', 'serif']   // titres de la newsletter
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { scrollbar-width: none; }
+        .slide { display: none; }
+        .slide.is-active { display: grid; }
+        details > summary { list-style: none; cursor: pointer; }
+        details > summary::-webkit-details-marker { display: none; }
+        details[open] .chev { transform: rotate(180deg); }
+        :focus-visible { outline: 2px solid #212529; outline-offset: 3px; }
+        .chip { flex-shrink: 0; height: 2.5rem; padding: 0 1.1rem; border: 1px solid #E7E2DD; border-radius: 999px; font-size: 14px; background: #fff; white-space: nowrap; transition: background .15s, color .15s, border-color .15s; }
+        .chip:hover { border-color: #212529; }
+        .chip[aria-pressed="true"] { background: #212529; border-color: #212529; color: #fff; }
+    </style>
+</head>
+<body class="bg-white text-au-ink font-sans antialiased">
+
+    <!-- ============ HAUT DE PAGE ============ -->
+    <header class="sticky top-0 z-30 bg-white/95 backdrop-blur border-b border-au-line">
+        <div class="max-w-6xl mx-auto px-4 h-16 md:h-20 flex items-center justify-between gap-4">
+            <a href="avantage-v5.html" class="flex items-center gap-2.5 sm:gap-3 shrink-0" aria-label="Espace Avantages, accueil">
+                <img src="img/auditorium_logo.png" alt="l'Auditorium de Radio France" class="h-8 sm:h-9 md:h-12 w-auto">
+                <span class="block border-l border-au-line pl-2.5 sm:pl-3 leading-tight">
+                    <span class="block font-nl text-[15px] sm:text-lg md:text-xl leading-none whitespace-nowrap">Espace Avantages</span>
+                    <span class="block text-[11px] sm:text-xs text-au-grey mt-0.5">Réservé aux abonnés</span>
+                </span>
+            </a>
+
+            <nav class="hidden lg:flex items-center gap-7 text-[15px]" aria-label="Menu principal">
+                <a href="offres.html" class="hover:underline underline-offset-4">Toutes les offres</a>
+                <a href="#programme" class="hover:underline underline-offset-4">Le programme</a>
+                <a href="#faq" class="hover:underline underline-offset-4">Questions fréquentes</a>
+            </nav>
+
+            <div class="flex items-center gap-4 md:gap-6">
+                <a href="#" class="flex items-center gap-2 text-sm font-medium hover:underline underline-offset-4">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>
+                    <span class="hidden md:inline">Se connecter</span>
+                </a>
+                <img src="img/rf_logo_noir.svg" alt="Radio France" class="hidden sm:block h-5 md:h-6 w-auto">
+                <button class="lg:hidden p-1" aria-label="Ouvrir le menu">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+    <!-- ============ OFFRES PAR CATÉGORIE (comme la plaquette) ============ -->
+    <section id="offres" class="max-w-6xl mx-auto px-4 pt-8 md:pt-12 pb-16 md:pb-24">
+        <div class="flex items-end justify-between gap-4">
+            <div><p class="text-sm text-au-grey"><a href="avantage-v5.html" class="hover:underline">Accueil</a> › Toutes les offres</p><h1 class="font-serif text-3xl md:text-4xl mt-2">Toutes les offres</h1></div>
+            
+        </div>
+
+        <div class="mt-10 md:mt-12">
+            <div class="flex items-baseline justify-between gap-4 border-b border-au-line pb-3 mb-5">
+                <h2 class="font-serif text-xl md:text-2xl">Concerts</h2>
+                <span class="text-sm text-au-grey shrink-0">1 offre</span>
+            </div>
+            <div class="flex md:grid md:grid-cols-5 gap-4 md:gap-5 overflow-x-auto md:overflow-visible snap-x snap-mandatory scroll-px-4 md:scroll-px-0 no-scrollbar -mx-4 px-4 after:content-[""] after:shrink-0 after:w-px md:after:hidden md:mx-0 md:px-0">
+                <a href="offre.html?id=invitation-concert-avoaha-choeur-et-percussion" class="group snap-start shrink-0 w-[44%] sm:w-[30%] md:w-auto bg-white border border-au-line rounded-md p-3 md:p-3.5 hover:border-au-ink/40 hover:shadow-[0_6px_20px_-12px_rgba(0,0,0,0.25)] transition">
+                    <div class="aspect-[540/620] overflow-hidden bg-au-cream rounded"><img src="img/audito_as_studio.jpg" alt="" class="w-full h-full object-contain group-hover:scale-[1.03] transition duration-300"></div>
+                    <p class="mt-2.5 flex items-center gap-1.5 text-[11px] uppercase tracking-wider text-au-grey"><span class="w-2 h-2 shrink-0 bg-au-ink"></span>Concert · Auditorium</p>
+                    <h4 class="mt-1 font-serif text-[15px] md:text-base leading-snug group-hover:underline underline-offset-4">Avoaha, chœur et percussion</h4>
+                    <p class="mt-1 text-sm font-medium">Invitation pour deux personnes</p>
+                </a>
+            </div>
+        </div>
+
+        <div class="mt-10 md:mt-12">
+            <div class="flex items-baseline justify-between gap-4 border-b border-au-line pb-3 mb-5">
+                <h2 class="font-serif text-xl md:text-2xl">Films à l'affiche</h2>
+                <span class="text-sm text-au-grey shrink-0">3 offres</span>
+            </div>
+            <div class="flex md:grid md:grid-cols-5 gap-4 md:gap-5 overflow-x-auto md:overflow-visible snap-x snap-mandatory scroll-px-4 md:scroll-px-0 no-scrollbar -mx-4 px-4 after:content-[""] after:shrink-0 after:w-px md:after:hidden md:mx-0 md:px-0">
+                <a href="offre.html?id=ma-toute-petite-ecole-pascal-plisson" class="group snap-start shrink-0 w-[44%] sm:w-[30%] md:w-auto bg-white border border-au-line rounded-md p-3 md:p-3.5 hover:border-au-ink/40 hover:shadow-[0_6px_20px_-12px_rgba(0,0,0,0.25)] transition">
+                    <div class="aspect-[540/620] overflow-hidden bg-au-cream rounded"><img src="img/petite_ecole.jpg" alt="" class="w-full h-full object-contain group-hover:scale-[1.03] transition duration-300"></div>
+                    <p class="mt-2.5 flex items-center gap-1.5 text-[11px] uppercase tracking-wider text-au-grey"><span class="w-2 h-2 shrink-0 bg-fc"></span>Cinéma · France Culture</p>
+                    <h4 class="mt-1 font-serif text-[15px] md:text-base leading-snug group-hover:underline underline-offset-4">Ma toute petite école, de Pascal Plisson</h4>
+                    <p class="mt-1 text-sm text-au-grey">Complet</p>
+                </a>
+                <a href="offre.html?id=moulin-un-film-de-laszlo-nemes" class="group snap-start shrink-0 w-[44%] sm:w-[30%] md:w-auto bg-white border border-au-line rounded-md p-3 md:p-3.5 hover:border-au-ink/40 hover:shadow-[0_6px_20px_-12px_rgba(0,0,0,0.25)] transition">
+                    <div class="aspect-[540/620] overflow-hidden bg-au-cream rounded"><img src="img/moulin.jpg" alt="" class="w-full h-full object-contain group-hover:scale-[1.03] transition duration-300"></div>
+                    <p class="mt-2.5 flex items-center gap-1.5 text-[11px] uppercase tracking-wider text-au-grey"><span class="w-2 h-2 shrink-0 bg-fi"></span>Cinéma · France Inter</p>
+                    <h4 class="mt-1 font-serif text-[15px] md:text-base leading-snug group-hover:underline underline-offset-4">Moulin, de László Nemes</h4>
+                    <p class="mt-1 text-sm text-au-grey">Complet</p>
+                </a>
+                <a href="offre.html?id=wild-horse-nine-un-film-de-martin-mcdonagh" class="group snap-start shrink-0 w-[44%] sm:w-[30%] md:w-auto bg-white border border-au-line rounded-md p-3 md:p-3.5 hover:border-au-ink/40 hover:shadow-[0_6px_20px_-12px_rgba(0,0,0,0.25)] transition">
+                    <div class="aspect-[540/620] overflow-hidden bg-au-cream rounded"><img src="img/wild_horse_nine.jpg" alt="" class="w-full h-full object-contain group-hover:scale-[1.03] transition duration-300"></div>
+                    <p class="mt-2.5 flex items-center gap-1.5 text-[11px] uppercase tracking-wider text-au-grey"><span class="w-2 h-2 shrink-0 bg-fi"></span>Cinéma · France Inter</p>
+                    <h4 class="mt-1 font-serif text-[15px] md:text-base leading-snug group-hover:underline underline-offset-4">Wild Horse Nine, de Martin McDonagh</h4>
+                    <p class="mt-1 text-sm text-au-grey">Complet</p>
+                </a>
+            </div>
+        </div>
+
+        <div class="mt-10 md:mt-12">
+            <div class="flex items-baseline justify-between gap-4 border-b border-au-line pb-3 mb-5">
+                <h2 class="font-serif text-xl md:text-2xl">Livres</h2>
+                <span class="text-sm text-au-grey shrink-0">4 offres</span>
+            </div>
+            <div class="flex md:grid md:grid-cols-5 gap-4 md:gap-5 overflow-x-auto md:overflow-visible snap-x snap-mandatory scroll-px-4 md:scroll-px-0 no-scrollbar -mx-4 px-4 after:content-[""] after:shrink-0 after:w-px md:after:hidden md:mx-0 md:px-0">
+                <a href="offre.html?id=iran-un-pays-en-ebullition" class="group snap-start shrink-0 w-[44%] sm:w-[30%] md:w-auto bg-white border border-au-line rounded-md p-3 md:p-3.5 hover:border-au-ink/40 hover:shadow-[0_6px_20px_-12px_rgba(0,0,0,0.25)] transition">
+                    <div class="aspect-[540/620] overflow-hidden bg-au-cream rounded"><img src="img/iran.jpg" alt="" class="w-full h-full object-contain group-hover:scale-[1.03] transition duration-300"></div>
+                    <p class="mt-2.5 flex items-center gap-1.5 text-[11px] uppercase tracking-wider text-au-grey"><span class="w-2 h-2 shrink-0 bg-fi"></span>Livre · France Inter</p>
+                    <h4 class="mt-1 font-serif text-[15px] md:text-base leading-snug group-hover:underline underline-offset-4">Iran, un pays en ébullition</h4>
+                    <p class="mt-1 text-sm text-au-grey">Complet</p>
+                </a>
+                <a href="offre.html?id=la-saga-des-maths-de-claire-selma-aitout" class="group snap-start shrink-0 w-[44%] sm:w-[30%] md:w-auto bg-white border border-au-line rounded-md p-3 md:p-3.5 hover:border-au-ink/40 hover:shadow-[0_6px_20px_-12px_rgba(0,0,0,0.25)] transition">
+                    <div class="aspect-[540/620] overflow-hidden bg-au-cream rounded"><img src="img/saga_maths.jpg" alt="" class="w-full h-full object-contain group-hover:scale-[1.03] transition duration-300"></div>
+                    <p class="mt-2.5 flex items-center gap-1.5 text-[11px] uppercase tracking-wider text-au-grey"><span class="w-2 h-2 shrink-0 bg-fi"></span>Livre · France Inter</p>
+                    <h4 class="mt-1 font-serif text-[15px] md:text-base leading-snug group-hover:underline underline-offset-4">La Saga des maths, de Claire-Selma Aïtout</h4>
+                    <p class="mt-1 text-sm text-au-grey">Complet</p>
+                </a>
+                <a href="offre.html?id=le-grand-atlas-2027" class="group snap-start shrink-0 w-[44%] sm:w-[30%] md:w-auto bg-white border border-au-line rounded-md p-3 md:p-3.5 hover:border-au-ink/40 hover:shadow-[0_6px_20px_-12px_rgba(0,0,0,0.25)] transition">
+                    <div class="aspect-[540/620] overflow-hidden bg-au-cream rounded"><img src="img/grand_atlas.jpg" alt="" class="w-full h-full object-contain group-hover:scale-[1.03] transition duration-300"></div>
+                    <p class="mt-2.5 flex items-center gap-1.5 text-[11px] uppercase tracking-wider text-au-grey"><span class="w-2 h-2 shrink-0 bg-au-ink"></span>Livre · Éditions Radio France</p>
+                    <h4 class="mt-1 font-serif text-[15px] md:text-base leading-snug group-hover:underline underline-offset-4">Le Grand Atlas 2027</h4>
+                    <p class="mt-1 text-sm text-au-grey">Complet</p>
+                </a>
+                <a href="offre.html?id=lodyssee-des-humains-evelyne-heyer" class="group snap-start shrink-0 w-[44%] sm:w-[30%] md:w-auto bg-white border border-au-line rounded-md p-3 md:p-3.5 hover:border-au-ink/40 hover:shadow-[0_6px_20px_-12px_rgba(0,0,0,0.25)] transition">
+                    <div class="aspect-[540/620] overflow-hidden bg-au-cream rounded"><img src="img/odyssee_humains.jpg" alt="" class="w-full h-full object-contain group-hover:scale-[1.03] transition duration-300"></div>
+                    <p class="mt-2.5 flex items-center gap-1.5 text-[11px] uppercase tracking-wider text-au-grey"><span class="w-2 h-2 shrink-0 bg-fc"></span>Livre · France Culture</p>
+                    <h4 class="mt-1 font-serif text-[15px] md:text-base leading-snug group-hover:underline underline-offset-4">L&#x27;Odyssée des humains, d&#x27;Evelyne Heyer</h4>
+                    <p class="mt-1 text-sm text-au-grey">Complet</p>
+                </a>
+            </div>
+        </div>
+
+        <div class="mt-10 md:mt-12">
+            <div class="flex items-baseline justify-between gap-4 border-b border-au-line pb-3 mb-5">
+                <h2 class="font-serif text-xl md:text-2xl">CD</h2>
+                <span class="text-sm text-au-grey shrink-0">3 offres</span>
+            </div>
+            <div class="flex md:grid md:grid-cols-5 gap-4 md:gap-5 overflow-x-auto md:overflow-visible snap-x snap-mandatory scroll-px-4 md:scroll-px-0 no-scrollbar -mx-4 px-4 after:content-[""] after:shrink-0 after:w-px md:after:hidden md:mx-0 md:px-0">
+                <a href="offre.html?id=au-coeur-du-romantisme-francais-clemence-de-grandval" class="group snap-start shrink-0 w-[44%] sm:w-[30%] md:w-auto bg-white border border-au-line rounded-md p-3 md:p-3.5 hover:border-au-ink/40 hover:shadow-[0_6px_20px_-12px_rgba(0,0,0,0.25)] transition">
+                    <div class="aspect-[540/620] overflow-hidden bg-au-cream rounded"><img src="img/album_clemence_grandval.jpg" alt="" class="w-full h-full object-contain group-hover:scale-[1.03] transition duration-300"></div>
+                    <p class="mt-2.5 flex items-center gap-1.5 text-[11px] uppercase tracking-wider text-au-grey"><span class="w-2 h-2 shrink-0 bg-fm"></span>CD · France Musique</p>
+                    <h4 class="mt-1 font-serif text-[15px] md:text-base leading-snug group-hover:underline underline-offset-4">Au cœur du romantisme français, Clémence de Grandval</h4>
+                    <p class="mt-1 text-sm text-au-grey">Complet</p>
+                </a>
+                <a href="offre.html?id=beethoven-piano-trios-vol-3-busch-trio" class="group snap-start shrink-0 w-[44%] sm:w-[30%] md:w-auto bg-white border border-au-line rounded-md p-3 md:p-3.5 hover:border-au-ink/40 hover:shadow-[0_6px_20px_-12px_rgba(0,0,0,0.25)] transition">
+                    <div class="aspect-[540/620] overflow-hidden bg-au-cream rounded"><img src="img/busch_trio.jpg" alt="" class="w-full h-full object-contain group-hover:scale-[1.03] transition duration-300"></div>
+                    <p class="mt-2.5 flex items-center gap-1.5 text-[11px] uppercase tracking-wider text-au-grey"><span class="w-2 h-2 shrink-0 bg-fm"></span>CD · France Musique</p>
+                    <h4 class="mt-1 font-serif text-[15px] md:text-base leading-snug group-hover:underline underline-offset-4">Beethoven, The Piano Trios vol. 3, Busch Trio</h4>
+                    <p class="mt-1 text-sm text-au-grey">Complet</p>
+                </a>
+                <a href="offre.html?id=resistance-jacques-schwarz-bart" class="group snap-start shrink-0 w-[44%] sm:w-[30%] md:w-auto bg-white border border-au-line rounded-md p-3 md:p-3.5 hover:border-au-ink/40 hover:shadow-[0_6px_20px_-12px_rgba(0,0,0,0.25)] transition">
+                    <div class="aspect-[540/620] overflow-hidden bg-au-cream rounded"><img src="img/schwarz_bart.jpg" alt="" class="w-full h-full object-contain group-hover:scale-[1.03] transition duration-300"></div>
+                    <p class="mt-2.5 flex items-center gap-1.5 text-[11px] uppercase tracking-wider text-au-grey"><span class="w-2 h-2 shrink-0 bg-fm"></span>CD · France Musique</p>
+                    <h4 class="mt-1 font-serif text-[15px] md:text-base leading-snug group-hover:underline underline-offset-4">Resistance, Jacques Schwarz-Bart</h4>
+                    <p class="mt-1 text-sm text-au-grey">Complet</p>
+                </a>
+            </div>
+        </div>
+
+        <div class="mt-10 md:mt-12">
+            <div class="flex items-baseline justify-between gap-4 border-b border-au-line pb-3 mb-5">
+                <h2 class="font-serif text-xl md:text-2xl">Expositions et visites</h2>
+                <span class="text-sm text-au-grey shrink-0">3 offres</span>
+            </div>
+            <div class="flex md:grid md:grid-cols-5 gap-4 md:gap-5 overflow-x-auto md:overflow-visible snap-x snap-mandatory scroll-px-4 md:scroll-px-0 no-scrollbar -mx-4 px-4 after:content-[""] after:shrink-0 after:w-px md:after:hidden md:mx-0 md:px-0">
+                <a href="offre.html?id=artistes-au-museum-au-museum-national-dhistoire-naturelle" class="group snap-start shrink-0 w-[44%] sm:w-[30%] md:w-auto bg-white border border-au-line rounded-md p-3 md:p-3.5 hover:border-au-ink/40 hover:shadow-[0_6px_20px_-12px_rgba(0,0,0,0.25)] transition">
+                    <div class="aspect-[540/620] overflow-hidden bg-au-cream rounded"><img src="img/expo_france_inter.jpg" alt="" class="w-full h-full object-contain group-hover:scale-[1.03] transition duration-300"></div>
+                    <p class="mt-2.5 flex items-center gap-1.5 text-[11px] uppercase tracking-wider text-au-grey"><span class="w-2 h-2 shrink-0 bg-fi"></span>Exposition · France Inter</p>
+                    <h4 class="mt-1 font-serif text-[15px] md:text-base leading-snug group-hover:underline underline-offset-4">Artistes au Muséum</h4>
+                    <p class="mt-1 text-sm text-au-grey">Complet</p>
+                </a>
+                <a href="offre.html?id=musee-carnavalet-paris-larrache-jacques-villegle-et-lart-urbain" class="group snap-start shrink-0 w-[44%] sm:w-[30%] md:w-auto bg-white border border-au-line rounded-md p-3 md:p-3.5 hover:border-au-ink/40 hover:shadow-[0_6px_20px_-12px_rgba(0,0,0,0.25)] transition">
+                    <div class="aspect-[540/620] overflow-hidden bg-au-cream rounded"><img src="img/carnavalet.jpg" alt="" class="w-full h-full object-contain group-hover:scale-[1.03] transition duration-300"></div>
+                    <p class="mt-2.5 flex items-center gap-1.5 text-[11px] uppercase tracking-wider text-au-grey"><span class="w-2 h-2 shrink-0 bg-fc"></span>Exposition · France Culture</p>
+                    <h4 class="mt-1 font-serif text-[15px] md:text-base leading-snug group-hover:underline underline-offset-4">Paris à l&#x27;arraché, Jacques Villeglé au musée Carnavalet</h4>
+                    <p class="mt-1 text-sm text-au-grey">Complet</p>
+                </a>
+                <a href="offre.html?id=visite-du-palais-des-papes-avignon" class="group snap-start shrink-0 w-[44%] sm:w-[30%] md:w-auto bg-white border border-au-line rounded-md p-3 md:p-3.5 hover:border-au-ink/40 hover:shadow-[0_6px_20px_-12px_rgba(0,0,0,0.25)] transition">
+                    <div class="aspect-[540/620] overflow-hidden bg-au-cream rounded"><img src="img/palais_papes.jpg" alt="" class="w-full h-full object-contain group-hover:scale-[1.03] transition duration-300"></div>
+                    <p class="mt-2.5 flex items-center gap-1.5 text-[11px] uppercase tracking-wider text-au-grey"><span class="w-2 h-2 shrink-0 bg-fc"></span>Exposition · France Culture</p>
+                    <h4 class="mt-1 font-serif text-[15px] md:text-base leading-snug group-hover:underline underline-offset-4">Visite du Palais des Papes à Avignon</h4>
+                    <p class="mt-1 text-sm text-au-grey">Complet</p>
+                </a>
+            </div>
+        </div>
+
+        <div class="mt-10 md:mt-12">
+            <div class="flex items-baseline justify-between gap-4 border-b border-au-line pb-3 mb-5">
+                <h2 class="font-serif text-xl md:text-2xl">Cadeaux</h2>
+                <span class="text-sm text-au-grey shrink-0">2 offres</span>
+            </div>
+            <div class="flex md:grid md:grid-cols-5 gap-4 md:gap-5 overflow-x-auto md:overflow-visible snap-x snap-mandatory scroll-px-4 md:scroll-px-0 no-scrollbar -mx-4 px-4 after:content-[""] after:shrink-0 after:w-px md:after:hidden md:mx-0 md:px-0">
+                <a href="offre.html?id=pack-collector-mouv-tour-de-cou-et-porte-carte" class="group snap-start shrink-0 w-[44%] sm:w-[30%] md:w-auto bg-white border border-au-line rounded-md p-3 md:p-3.5 hover:border-au-ink/40 hover:shadow-[0_6px_20px_-12px_rgba(0,0,0,0.25)] transition">
+                    <div class="aspect-[540/620] overflow-hidden bg-au-cream rounded"><img src="img/pack_mouv.png" alt="" class="w-full h-full object-contain group-hover:scale-[1.03] transition duration-300"></div>
+                    <p class="mt-2.5 flex items-center gap-1.5 text-[11px] uppercase tracking-wider text-au-grey"><span class="w-2 h-2 shrink-0 bg-[#5CFFA6]"></span>Accessoire · Mouv&#x27;</p>
+                    <h4 class="mt-1 font-serif text-[15px] md:text-base leading-snug group-hover:underline underline-offset-4">Pack collector Mouv&#x27;</h4>
+                    <p class="mt-1 text-sm text-au-grey">Complet</p>
+                </a>
+                <a href="offre.html?id=tote-bag-auditorium-de-radiofrance" class="group snap-start shrink-0 w-[44%] sm:w-[30%] md:w-auto bg-white border border-au-line rounded-md p-3 md:p-3.5 hover:border-au-ink/40 hover:shadow-[0_6px_20px_-12px_rgba(0,0,0,0.25)] transition">
+                    <div class="aspect-[540/620] overflow-hidden bg-au-cream rounded"><img src="img/tote_bag_auditorium.jpg" alt="" class="w-full h-full object-contain group-hover:scale-[1.03] transition duration-300"></div>
+                    <p class="mt-2.5 flex items-center gap-1.5 text-[11px] uppercase tracking-wider text-au-grey"><span class="w-2 h-2 shrink-0 bg-au-ink"></span>Accessoire · Auditorium</p>
+                    <h4 class="mt-1 font-serif text-[15px] md:text-base leading-snug group-hover:underline underline-offset-4">Le tote bag de l&#x27;Auditorium</h4>
+                    <p class="mt-1 text-sm text-au-grey">Complet</p>
+                </a>
+            </div>
+        </div>
+
+    </section>
+    </main>
+
+    <!-- ============ PIED DE PAGE ============ -->
+    <footer class="bg-au-cream border-t border-au-line">
+        <div class="max-w-6xl mx-auto px-4 py-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <img src="img/auditorium_logo.png" alt="l'Auditorium de Radio France" class="h-10 w-auto self-start">
+            <nav class="flex flex-wrap gap-x-5 gap-y-2 text-sm text-au-ink/80" aria-label="Chaînes Radio France">
+                <a href="#" class="hover:underline">France Inter</a><a href="#" class="hover:underline">franceinfo</a><a href="#" class="hover:underline">ici</a><a href="#" class="hover:underline">France Culture</a><a href="#" class="hover:underline">France Musique</a><a href="#" class="hover:underline">Fip</a><a href="#" class="hover:underline">Mouv'</a><a href="#" class="hover:underline">Les formations musicales</a>
+            </nav>
+        </div>
+        <div class="border-t border-au-line">
+            <div class="max-w-6xl mx-auto px-4 py-5 flex flex-wrap gap-x-5 gap-y-2 text-xs text-au-grey">
+                <a href="#" class="hover:underline">Accessibilité</a><a href="#" class="hover:underline">Conditions générales d'utilisation</a><a href="#" class="hover:underline">Mentions légales</a><a href="#" class="hover:underline">Protection des données</a><a href="#" class="hover:underline">Gestion des cookies</a><span class="md:ml-auto">© 2026 Radio France</span>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

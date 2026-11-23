@@ -1,0 +1,24 @@
+MAQUETTE ESPACE AVANTAGES (V5) - prototype cliquable
+Mis à jour le 18/11/2026
+
+POUR L'OUVRIR
+Double-cliquez sur « avantage-v5.html » : la page d'accueil s'ouvre dans votre navigateur.
+Une connexion internet est nécessaire (polices et mise en page chargées en ligne).
+
+LES PAGES
+- avantage-v5.html : page d'accueil (carrousel, offres du moment avec filtre par catégorie, programme fidélité, prochainement, FAQ)
+- offres.html      : toutes les offres, rangées par catégorie
+- offre.html       : fiche d'une offre (ouverte en cliquant sur une offre) avec réservation en 3 étapes simulée
+
+LES AUTRES ÉLÉMENTS
+- img/             : logos (Auditorium, Radio France en noir) et visuels des offres
+- offres-data.js   : contenu des 16 offres, repris du site actuel le 18/11/2026
+- outils/          : scripts qui ont servi à récupérer les offres et à générer les pages
+
+À SAVOIR
+- Prototype : rien n'est réellement réservé, le compte affiché est fictif.
+- Seule l'offre « Avoaha » est réservable (les autres étaient complètes sur le site).
+
+LIENS
+- Maquette V4 d'Emmanuelle (base de travail) : https://rdf-avantages.s3.fr-par.scw.cloud/avantage.html
+- Liste des remarques : https://claude.ai/artifact/PJ8zgCotE4ddERLUMnSUd5

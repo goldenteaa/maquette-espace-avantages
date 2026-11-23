@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Espace Avantages - Auditorium de Radio France (V5)</title>
+    <!--
+      V5 : reprise de la maquette V4 d'Emmanuelle (RnD) avec les remarques du 18/11/2026
+      - Logo l'Auditorium en haut à gauche, « Réservé aux abonnés » en petit, logo Radio France noir à droite
+      - Polices de la newsletter et du site de la Maison de la Radio : Castoro (titres), Fira Sans (texte)
+      - Plus de bleu Radio France : boutons noirs comme les boutons « Réserver » du site de la Maison de la Radio
+      - Peu de noir / gris foncé : fonds blancs et crème
+      - Pas de bloc « Rechercher une offre » sur la home : bouton « Voir toutes les offres »
+      - Carrousel : photo dominante, titre court qui ne recouvre plus l'image, bouton plus discret
+      - Plus d'offres visibles, boutons hiérarchisés, présentation de l'EA en 3 points
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Castoro:ital@0;1&family=Fira+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'au-ink': '#212529',     // texte et boutons (site Maison de la Radio)
+                        'au-grey': '#727272',    // infos secondaires
+                        'au-cream': '#FBF8F6',   // fonds de mise en avant
+                        'au-line': '#E7E2DD',    // filets
+                        'fm': '#A80041',         // pastille France Musique (NL)
+                        'fc': '#752A83',         // pastille France Culture (NL)
+                        'fi': '#E20134'          // pastille France Inter (à confirmer)
+                    },
+                    fontFamily: {
+                        serif: ['Castoro', 'Georgia', 'serif'],
+                        sans: ['"Fira Sans"', 'Arial', 'sans-serif'],
+                        nl: ['Georgia', '"Times New Roman"', 'serif']   // titres de la newsletter
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { scrollbar-width: none; }
+        .slide { display: none; }
+        .slide.is-active { display: grid; }
+        details > summary { list-style: none; cursor: pointer; }
+        details > summary::-webkit-details-marker { display: none; }
+        details[open] .chev { transform: rotate(180deg); }
+        :focus-visible { outline: 2px solid #212529; outline-offset: 3px; }
+        .chip { flex-shrink: 0; height: 2.5rem; padding: 0 1.1rem; border: 1px solid #E7E2DD; border-radius: 999px; font-size: 14px; background: #fff; white-space: nowrap; transition: background .15s, color .15s, border-color .15s; }
+        .chip:hover { border-color: #212529; }
+        .chip[aria-pressed="true"] { background: #212529; border-color: #212529; color: #fff; }
+    </style>
+</head>
+<body class="bg-white text-au-ink font-sans antialiased">
+
+    <!-- ============ HAUT DE PAGE ============ -->
+    <header class="sticky top-0 z-30 bg-white/95 backdrop-blur border-b border-au-line">
+        <div class="max-w-6xl mx-auto px-4 h-16 md:h-20 flex items-center justify-between gap-4">
+            <a href="avantage-v5.html" class="flex items-center gap-2.5 sm:gap-3 shrink-0" aria-label="Espace Avantages, accueil">
+                <img src="img/auditorium_logo.png" alt="l'Auditorium de Radio France" class="h-8 sm:h-9 md:h-12 w-auto">
+                <span class="block border-l border-au-line pl-2.5 sm:pl-3 leading-tight">
+                    <span class="block font-nl text-[15px] sm:text-lg md:text-xl leading-none whitespace-nowrap">Espace Avantages</span>
+                    <span class="block text-[11px] sm:text-xs text-au-grey mt-0.5">Réservé aux abonnés</span>
+                </span>
+            </a>
+
+            <nav class="hidden lg:flex items-center gap-7 text-[15px]" aria-label="Menu principal">
+                <a href="offres.html" class="hover:underline underline-offset-4">Toutes les offres</a>
+                <a href="#programme" class="hover:underline underline-offset-4">Le programme</a>
+                <a href="#faq" class="hover:underline underline-offset-4">Questions fréquentes</a>
+            </nav>
+
+            <div class="flex items-center gap-4 md:gap-6">
+                <a href="#" class="flex items-center gap-2 text-sm font-medium hover:underline underline-offset-4">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>
+                    <span class="hidden md:inline">Se connecter</span>
+                </a>
+                <img src="img/rf_logo_noir.svg" alt="Radio France" class="hidden sm:block h-5 md:h-6 w-auto">
+                <button class="lg:hidden p-1" aria-label="Ouvrir le menu">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+    <!-- ============ CARROUSEL ============ -->
+    <section class="bg-au-cream border-b border-au-line" aria-roledescription="carrousel" aria-label="Offres à la une">
+        <div class="max-w-6xl mx-auto px-4 pt-6 md:pt-8 pb-8 md:pb-10">
+        <p class="text-xs uppercase tracking-[0.2em] text-au-grey mb-4 md:mb-6">À la une</p>
+        <div id="carousel" class="relative">
+
+            <!-- Slide 1 -->
+            <article class="slide is-active grid-cols-1 md:grid-cols-12 gap-0 md:gap-10 items-center" aria-roledescription="diapositive" aria-label="1 sur 3">
+                <a href="offre.html?id=invitation-concert-avoaha-choeur-et-percussion" class="block md:col-span-7 relative aspect-[4/3] md:aspect-[16/10] overflow-hidden rounded-md bg-white">
+                    <img src="img/audito_as_studio.jpg" alt="Le chœur de Radio France sur la scène de l'Auditorium" class="relative w-full h-full object-contain p-4 md:p-6">
+                </a>
+                <div class="md:col-span-5 pt-5 md:pt-0">
+                    <p class="flex items-center gap-2 text-xs uppercase tracking-wider text-au-grey"><span class="w-2.5 h-2.5 bg-au-ink"></span>Concert · Auditorium</p>
+                    <h2 class="font-serif text-2xl md:text-4xl leading-tight mt-3">Avoaha, chœur et percussion</h2>
+                    <p class="mt-3 text-[15px] md:text-base text-au-ink/80">Vos invitations offertes pour le concert du Chœur de Radio France.</p>
+                    <p class="mt-3 text-sm text-au-grey">Mercredi 18 novembre, 20h · Auditorium de Radio France</p>
+                    <div class="mt-5 flex items-center gap-5">
+                        <a href="offre.html?id=invitation-concert-avoaha-choeur-et-percussion" class="inline-flex items-center h-10 px-5 bg-au-ink text-white text-sm font-medium rounded-sm hover:bg-black transition">Découvrir l'offre</a>
+                        <a href="offre.html?id=invitation-concert-avoaha-choeur-et-percussion" class="text-sm underline underline-offset-4">Voir le détail</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Slide 2 -->
+            <article class="slide grid-cols-1 md:grid-cols-12 gap-0 md:gap-10 items-center" aria-roledescription="diapositive" aria-label="2 sur 3">
+                <a href="offre.html?id=artistes-au-museum-au-museum-national-dhistoire-naturelle" class="block md:col-span-7 relative aspect-[4/3] md:aspect-[16/10] overflow-hidden rounded-md bg-white">
+                    <img src="img/expo_france_inter.jpg" alt="Visuel de l'exposition Artistes au Muséum" class="relative w-full h-full object-contain p-4 md:p-6">
+                </a>
+                <div class="md:col-span-5 pt-5 md:pt-0">
+                    <p class="flex items-center gap-2 text-xs uppercase tracking-wider text-au-grey"><span class="w-2.5 h-2.5 bg-fi"></span>Exposition · France Inter</p>
+                    <h2 class="font-serif text-2xl md:text-4xl leading-tight mt-3">Artistes au Muséum</h2>
+                    <p class="mt-3 text-[15px] md:text-base text-au-ink/80">Vos invitations offertes pour l'exposition du Muséum national d'Histoire naturelle.</p>
+                    <p class="mt-3 text-sm text-au-grey">Jusqu'au 7 mars · Jardin des Plantes, Paris 5e</p>
+                    <div class="mt-5 flex items-center gap-5">
+                        <span class="inline-flex items-center h-10 px-5 border border-au-line text-au-grey text-sm rounded-sm" aria-disabled="true">Complet</span>
+                        <a href="offre.html?id=artistes-au-museum-au-museum-national-dhistoire-naturelle" class="text-sm underline underline-offset-4">Voir le détail</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Slide 3 -->
+            <article class="slide grid-cols-1 md:grid-cols-12 gap-0 md:gap-10 items-center" aria-roledescription="diapositive" aria-label="3 sur 3">
+                <a href="offre.html?id=tote-bag-auditorium-de-radiofrance" class="block md:col-span-7 relative aspect-[4/3] md:aspect-[16/10] overflow-hidden rounded-md bg-white">
+                    <img src="img/tote_bag_auditorium.jpg" alt="Tote bag noir de l'Auditorium" class="relative w-full h-full object-contain p-4 md:p-6">
+                </a>
+                <div class="md:col-span-5 pt-5 md:pt-0">
+                    <p class="flex items-center gap-2 text-xs uppercase tracking-wider text-au-grey"><span class="w-2.5 h-2.5 bg-au-ink"></span>Accessoire · Auditorium</p>
+                    <h2 class="font-serif text-2xl md:text-4xl leading-tight mt-3">Le tote bag de l'Auditorium</h2>
+                    <p class="mt-3 text-[15px] md:text-base text-au-ink/80">Votre accessoire offert : noir, en coton bio, du concert aux courses du week-end.</p>
+                    <p class="mt-3 text-sm text-au-grey">Dans la limite des stocks disponibles</p>
+                    <div class="mt-5 flex items-center gap-5">
+                        <span class="inline-flex items-center h-10 px-5 border border-au-line text-au-grey text-sm rounded-sm" aria-disabled="true">Complet</span>
+                        <a href="offre.html?id=tote-bag-auditorium-de-radiofrance" class="text-sm underline underline-offset-4">Voir le détail</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Navigation -->
+            <div class="mt-6 flex items-center justify-between md:justify-start md:gap-6">
+                <div class="flex items-center gap-2" id="dots"></div>
+                <div class="flex items-center gap-1">
+                    <button id="pause" class="w-9 h-9 grid place-items-center rounded-full hover:bg-white" aria-label="Mettre en pause le défilement">
+                        <svg id="ico-pause" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/></svg>
+                        <svg id="ico-play" class="w-4 h-4 hidden" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5l12 7-12 7z"/></svg>
+                    </button>
+                    <button id="prev" class="w-9 h-9 grid place-items-center rounded-full border border-au-line hover:bg-white" aria-label="Offre précédente">
+                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+                    </button>
+                    <button id="next" class="w-9 h-9 grid place-items-center rounded-full border border-au-line hover:bg-white" aria-label="Offre suivante">
+                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+            </div>
+    </section>
+
+    <!-- ============ OFFRES DU MOMENT (filtre par catégorie) ============ -->
+    <section id="offres" class="max-w-6xl mx-auto px-4 pt-14 md:pt-20">
+        <div class="flex items-end justify-between gap-4 mb-6">
+            <h2 class="font-serif text-2xl md:text-3xl">Les offres du moment</h2>
+            <a href="offres.html" class="hidden md:inline text-sm underline underline-offset-4">Voir toutes les offres →</a>
+        </div>
+        <div id="filtres" class="flex gap-2 overflow-x-auto no-scrollbar -mx-4 px-4 md:mx-0 md:px-0 mb-6 md:mb-8" role="toolbar" aria-label="Filtrer les offres par catégorie">
+            <button data-f="all" aria-pressed="true" class="chip">Toutes</button>
+            <button data-f="concert" aria-pressed="false" class="chip">Concerts</button>
+            <button data-f="cinema" aria-pressed="false" class="chip">Films à l'affiche</button>
+            <button data-f="expo" aria-pressed="false" class="chip">Expos et visites</button>
+            <button data-f="livre" aria-pressed="false" class="chip">Livres</button>
+            <button data-f="cd" aria-pressed="false" class="chip">CD</button>
+            <button data-f="cadeau" aria-pressed="false" class="chip">Cadeaux</button>
+        </div>
+        <p id="vide" class="hidden text-[15px] text-au-grey mb-6">Aucune offre dans cette catégorie pour le moment.</p>
+        <!-- Mobile : défilement au doigt ; tablette : 3 colonnes ; ordinateur : 4 colonnes -->
+        <div class="flex md:grid md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory scroll-px-4 md:scroll-px-0 no-scrollbar -mx-4 px-4 after:content-[""] after:shrink-0 after:w-px md:after:hidden md:mx-0 md:px-0">
+            <a href="offre.html?id=invitation-concert-avoaha-choeur-et-percussion" data-cat="concert" class="offre group snap-start shrink-0 w-[62%] sm:w-[42%] md:w-auto bg-white border border-au-line rounded-md p-3 md:p-3.5 hover:border-au-ink/40 hover:shadow-[0_6px_20px_-12px_rgba(0,0,0,0.25)] transition">
+                <div class="aspect-[540/620] overflow-hidden bg-au-cream rounded"><img src="img/audito_as_studio.jpg" alt="" class="w-full h-full object-contain group-hover:scale-[1.03] transition duration-300"></div>
+                <p class="mt-3 flex items-center gap-2 text-xs uppercase tracking-wider text-au-grey"><span class="w-2 h-2 shrink-0 bg-au-ink"></span>Concert · Auditorium</p>
+                <h3 class="mt-1 font-serif text-lg leading-snug group-hover:underline underline-offset-4">Avoaha, chœur et percussion</h3>
+                <p class="mt-1 text-sm text-au-grey">le 18/11 à 20h00 · Paris 16e</p>
+                <p class="mt-2 text-sm font-medium">Invitation pour deux personnes</p>
+            </a>
+            <a href="offre.html?id=wild-horse-nine-un-film-de-martin-mcdonagh" data-cat="cinema" class="offre group snap-start shrink-0 w-[62%] sm:w-[42%] md:w-auto bg-white border border-au-line rounded-md p-3 md:p-3.5 hover:border-au-ink/40 hover:shadow-[0_6px_20px_-12px_rgba(0,0,0,0.25)] transition">
+                <div class="aspect-[540/620] overflow-hidden bg-au-cream rounded"><img src="img/wild_horse_nine.jpg" alt="" class="w-full h-full object-contain group-hover:scale-[1.03] transition duration-300"></div>
+                <p class="mt-3 flex items-center gap-2 text-xs uppercase tracking-wider text-au-grey"><span class="w-2 h-2 shrink-0 bg-fi"></span>Cinéma · France Inter</p>
+                <h3 class="mt-1 font-serif text-lg leading-snug group-hover:underline underline-offset-4">Wild Horse Nine, de Martin McDonagh</h3>
+                <p class="mt-1 text-sm text-au-grey">Sortie en salle le 12/11</p>
+                <p class="mt-2 text-sm text-au-grey">Complet</p>
+            </a>
+            <a href="offre.html?id=le-grand-atlas-2027" data-cat="livre" class="offre group snap-start shrink-0 w-[62%] sm:w-[42%] md:w-auto bg-white border border-au-line rounded-md p-3 md:p-3.5 hover:border-au-ink/40 hover:shadow-[0_6px_20px_-12px_rgba(0,0,0,0.25)] transition">
+                <div class="aspect-[540/620] overflow-hidden bg-au-cream rounded"><img src="img/grand_atlas.jpg" alt="" class="w-full h-full object-contain group-hover:scale-[1.03] transition duration-300"></div>
+                <p class="mt-3 flex items-center gap-2 text-xs uppercase tracking-wider text-au-grey"><span class="w-2 h-2 shrink-0 bg-au-ink"></span>Livre · Éditions Radio France</p>
+                <h3 class="mt-1 font-serif text-lg leading-snug group-hover:underline underline-offset-4">Le Grand Atlas 2027</h3>
+                <p class="mt-1 text-sm text-au-grey">Envoi par La Poste</p>
+                <p class="mt-2 text-sm text-au-grey">Complet</p>
+            </a>
+            <a href="offre.html?id=au-coeur-du-romantisme-francais-clemence-de-grandval" data-cat="cd" class="offre group snap-start shrink-0 w-[62%] sm:w-[42%] md:w-auto bg-white border border-au-line rounded-md p-3 md:p-3.5 hover:border-au-ink/40 hover:shadow-[0_6px_20px_-12px_rgba(0,0,0,0.25)] transition">
+                <div class="aspect-[540/620] overflow-hidden bg-au-cream rounded"><img src="img/album_clemence_grandval.jpg" alt="" class="w-full h-full object-contain group-hover:scale-[1.03] transition duration-300"></div>
+                <p class="mt-3 flex items-center gap-2 text-xs uppercase tracking-wider text-au-grey"><span class="w-2 h-2 shrink-0 bg-fm"></span>CD · France Musique</p>
+                <h3 class="mt-1 font-serif text-lg leading-snug group-hover:underline underline-offset-4">Au cœur du romantisme français, Clémence de Grandval</h3>
+                <p class="mt-1 text-sm text-au-grey">Envoi par La Poste</p>
+                <p class="mt-2 text-sm text-au-grey">Complet</p>
+            </a>
+            <a href="offre.html?id=artistes-au-museum-au-museum-national-dhistoire-naturelle" data-cat="expo" class="offre group snap-start shrink-0 w-[62%] sm:w-[42%] md:w-auto bg-white border border-au-line rounded-md p-3 md:p-3.5 hover:border-au-ink/40 hover:shadow-[0_6px_20px_-12px_rgba(0,0,0,0.25)] transition">
+                <div class="aspect-[540/620] overflow-hidden bg-au-cream rounded"><img src="img/expo_france_inter.jpg" alt="" class="w-full h-full object-contain group-hover:scale-[1.03] transition duration-300"></div>
+                <p class="mt-3 flex items-center gap-2 text-xs uppercase tracking-wider text-au-grey"><span class="w-2 h-2 shrink-0 bg-fi"></span>Exposition · France Inter</p>
+                <h3 class="mt-1 font-serif text-lg leading-snug group-hover:underline underline-offset-4">Artistes au Muséum</h3>
+                <p class="mt-1 text-sm text-au-grey">du 23/09 au 07/03 · Paris 5e</p>
+                <p class="mt-2 text-sm text-au-grey">Complet</p>
+            </a>
+            <a href="offre.html?id=tote-bag-auditorium-de-radiofrance" data-cat="cadeau" class="offre group snap-start shrink-0 w-[62%] sm:w-[42%] md:w-auto bg-white border border-au-line rounded-md p-3 md:p-3.5 hover:border-au-ink/40 hover:shadow-[0_6px_20px_-12px_rgba(0,0,0,0.25)] transition">
+                <div class="aspect-[540/620] overflow-hidden bg-au-cream rounded"><img src="img/tote_bag_auditorium.jpg" alt="" class="w-full h-full object-contain group-hover:scale-[1.03] transition duration-300"></div>
+                <p class="mt-3 flex items-center gap-2 text-xs uppercase tracking-wider text-au-grey"><span class="w-2 h-2 shrink-0 bg-au-ink"></span>Accessoire · Auditorium</p>
+                <h3 class="mt-1 font-serif text-lg leading-snug group-hover:underline underline-offset-4">Le tote bag de l&#x27;Auditorium</h3>
+                <p class="mt-1 text-sm text-au-grey">Envoi par La Poste</p>
+                <p class="mt-2 text-sm text-au-grey">Complet</p>
+            </a>
+            <a href="offre.html?id=moulin-un-film-de-laszlo-nemes" data-cat="cinema" class="offre group snap-start shrink-0 w-[62%] sm:w-[42%] md:w-auto bg-white border border-au-line rounded-md p-3 md:p-3.5 hover:border-au-ink/40 hover:shadow-[0_6px_20px_-12px_rgba(0,0,0,0.25)] transition">
+                <div class="aspect-[540/620] overflow-hidden bg-au-cream rounded"><img src="img/moulin.jpg" alt="" class="w-full h-full object-contain group-hover:scale-[1.03] transition duration-300"></div>
+                <p class="mt-3 flex items-center gap-2 text-xs uppercase tracking-wider text-au-grey"><span class="w-2 h-2 shrink-0 bg-fi"></span>Cinéma · France Inter</p>
+                <h3 class="mt-1 font-serif text-lg leading-snug group-hover:underline underline-offset-4">Moulin, de László Nemes</h3>
+                <p class="mt-1 text-sm text-au-grey">Sortie en salle le 12/11</p>
+                <p class="mt-2 text-sm text-au-grey">Complet</p>
+            </a>
+            <a href="offre.html?id=la-saga-des-maths-de-claire-selma-aitout" data-cat="livre" class="offre group snap-start shrink-0 w-[62%] sm:w-[42%] md:w-auto bg-white border border-au-line rounded-md p-3 md:p-3.5 hover:border-au-ink/40 hover:shadow-[0_6px_20px_-12px_rgba(0,0,0,0.25)] transition">
+                <div class="aspect-[540/620] overflow-hidden bg-au-cream rounded"><img src="img/saga_maths.jpg" alt="" class="w-full h-full object-contain group-hover:scale-[1.03] transition duration-300"></div>
+                <p class="mt-3 flex items-center gap-2 text-xs uppercase tracking-wider text-au-grey"><span class="w-2 h-2 shrink-0 bg-fi"></span>Livre · France Inter</p>
+                <h3 class="mt-1 font-serif text-lg leading-snug group-hover:underline underline-offset-4">La Saga des maths, de Claire-Selma Aïtout</h3>
+                <p class="mt-1 text-sm text-au-grey">Envoi par La Poste</p>
+                <p class="mt-2 text-sm text-au-grey">Complet</p>
+            </a>
+        </div>
+        <div class="text-center mt-8 md:mt-12">
+            <a href="offres.html" class="inline-flex items-center h-11 px-7 border border-au-ink text-sm font-medium rounded-sm hover:bg-au-ink hover:text-white transition">Voir toutes les offres</a>
+        </div>
+    </section>
+
+    <!-- ============ NON-ABONNÉS ============ -->
+    <section class="max-w-6xl mx-auto px-4 pt-14 md:pt-20">
+        <div class="bg-au-cream px-6 py-7 md:px-10 md:py-8 flex flex-col md:flex-row md:items-center justify-between gap-5 rounded-sm">
+            <div>
+                <h2 class="font-serif text-xl md:text-2xl">Vous n'êtes pas encore abonné ?</h2>
+                <p class="mt-1 text-[15px] text-au-ink/80">Abonnez-vous aux concerts de Radio France et profitez de ces avantages toute l'année.</p>
+            </div>
+            <div class="flex flex-wrap gap-3 shrink-0">
+                <a href="#" class="inline-flex items-center h-11 px-6 border border-au-ink bg-white text-sm font-medium rounded-sm hover:bg-au-ink hover:text-white transition">Se connecter</a>
+                <a href="#" class="inline-flex items-center h-11 px-6 bg-au-ink text-white text-sm font-medium rounded-sm hover:bg-black transition">S'abonner</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ LE PROGRAMME (présentation en 3 points) ============ -->
+    <section id="programme" class="max-w-6xl mx-auto px-4 pt-16 md:pt-24 pb-16 md:pb-20">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12 items-center">
+            <div class="md:col-span-6 aspect-[16/10] overflow-hidden rounded-md">
+                <img src="img/auditorium_salle.jpg" alt="L'Auditorium de Radio France pendant un concert" class="w-full h-full object-cover">
+            </div>
+            <div class="md:col-span-6">
+            <h2 class="font-serif text-2xl md:text-4xl leading-tight">Le programme fidélité des abonnés concerts</h2>
+            <p class="mt-4 text-base md:text-lg text-au-ink/80">Toute l'année, Radio France, ses chaînes et ses partenaires vous réservent des offres culturelles choisies pour vous.</p>
+        </div>
+        </div>
+
+        <div class="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12">
+            <div>
+                <svg class="w-9 h-9" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 10h24v4a3 3 0 000 6v4H4v-4a3 3 0 000-6z"/><path d="M19 10v14" stroke-dasharray="2 2"/></svg>
+                <h3 class="mt-4 font-serif text-xl">Des invitations offertes</h3>
+                <p class="mt-2 text-[15px] text-au-ink/80">Concerts, cinéma, théâtre, expositions : des places pour vous et un proche.</p>
+            </div>
+            <div>
+                <svg class="w-9 h-9" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M5 17l12-12h10v10L15 27z"/><circle cx="22" cy="10" r="2"/></svg>
+                <h3 class="mt-4 font-serif text-xl">Des tarifs préférentiels</h3>
+                <p class="mt-2 text-[15px] text-au-ink/80">Des réductions chez nos partenaires, et 15 % sur vos billets de concert.</p>
+            </div>
+            <div>
+                <svg class="w-9 h-9" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M16 4l3.5 7.5L27 13l-5.5 5.2L23 26l-7-3.8L9 26l1.5-7.8L5 13l7.5-1.5z"/></svg>
+                <h3 class="mt-4 font-serif text-xl">Des moments exclusifs</h3>
+                <p class="mt-2 text-[15px] text-au-ink/80">Visites, rencontres, vernissages et répétitions réservés aux abonnés.</p>
+            </div>
+        </div>
+
+        <p class="mt-10 text-[15px]">L'abonnement aux concerts, c'est aussi <strong class="font-semibold">15 % de réduction immédiate</strong> sur vos billets, dès 30 € pour les moins de 30 ans. <a href="#" class="underline underline-offset-4">Découvrir l'abonnement →</a></p>
+    </section>
+
+    <!-- ============ BIENTÔT DISPONIBLE ============ -->
+    <section class="max-w-6xl mx-auto px-4">
+        <div class="border-t border-au-line pt-12 md:pt-16">
+        <h2 class="font-serif text-2xl md:text-3xl mb-6">Prochainement</h2>
+        <div class="border border-dashed border-au-ink/30 rounded-md p-6 md:p-10 flex flex-col md:flex-row md:items-center gap-6 md:gap-10">
+            <div class="shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-full bg-au-cream grid place-items-center" aria-hidden="true">
+                <svg class="w-9 h-9 md:w-10 md:h-10" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="5" y="7" width="22" height="20" rx="1.5"/><path d="M5 13h22M11 4v6M21 4v6"/><circle cx="16" cy="20" r="2.2" fill="currentColor" stroke="none"/></svg>
+            </div>
+            <div class="flex-1">
+                <p class="inline-flex items-center gap-2 text-xs uppercase tracking-wider"><span class="px-2 py-0.5 rounded-full bg-au-ink text-white">Bientôt disponible</span><span class="text-au-grey">Concert · Auditorium</span></p>
+                <h3 class="font-serif text-2xl md:text-3xl mt-3 leading-tight">Bach, Mozart, Messiaen, Rivet</h3>
+                <p class="mt-2 text-[15px] text-au-ink/80">Avec Sarah Kim. Les invitations seront bientôt ouvertes à la réservation : revenez sur l'Espace Avantages ou guettez la prochaine newsletter.</p>
+            </div>
+            <a href="#" class="shrink-0 self-start md:self-center inline-flex items-center h-11 px-6 border border-au-ink bg-white text-sm font-medium rounded-sm hover:bg-au-ink hover:text-white transition">M'avertir à l'ouverture</a>
+        </div>
+        </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section id="faq" class="max-w-3xl mx-auto px-4 py-16 md:py-24">
+        <h2 class="font-serif text-2xl md:text-3xl text-center">Questions fréquentes</h2>
+        <div class="mt-8 border-t border-au-line">
+            <details class="border-b border-au-line py-4">
+                <summary class="flex items-center justify-between gap-4 text-[15px] md:text-base font-medium">Comment réserver une offre ?<svg class="chev w-4 h-4 shrink-0 transition" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+                <p class="mt-3 text-[15px] text-au-ink/80">Connectez-vous avec votre compte abonné, choisissez une offre puis cliquez sur « Réserver ».</p>
+            </details>
+            <details class="border-b border-au-line py-4">
+                <summary class="flex items-center justify-between gap-4 text-[15px] md:text-base font-medium">Combien d'offres puis-je réserver ?<svg class="chev w-4 h-4 shrink-0 transition" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+                <p class="mt-3 text-[15px] text-au-ink/80">Texte à reprendre de la FAQ actuelle.</p>
+            </details>
+            <details class="border-b border-au-line py-4">
+                <summary class="flex items-center justify-between gap-4 text-[15px] md:text-base font-medium">Comment utiliser mon code ?<svg class="chev w-4 h-4 shrink-0 transition" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+                <p class="mt-3 text-[15px] text-au-ink/80">Texte à reprendre de la FAQ actuelle.</p>
+            </details>
+        </div>
+        <div class="text-center mt-8">
+            <a href="#" class="text-sm underline underline-offset-4">Toutes les questions fréquentes →</a>
+        </div>
+    </section>
+
+    </main>
+
+    <!-- ============ PIED DE PAGE ============ -->
+    <footer class="bg-au-cream border-t border-au-line">
+        <div class="max-w-6xl mx-auto px-4 py-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <img src="img/auditorium_logo.png" alt="l'Auditorium de Radio France" class="h-10 w-auto self-start">
+            <nav class="flex flex-wrap gap-x-5 gap-y-2 text-sm text-au-ink/80" aria-label="Chaînes Radio France">
+                <a href="#" class="hover:underline">France Inter</a><a href="#" class="hover:underline">franceinfo</a><a href="#" class="hover:underline">ici</a><a href="#" class="hover:underline">France Culture</a><a href="#" class="hover:underline">France Musique</a><a href="#" class="hover:underline">Fip</a><a href="#" class="hover:underline">Mouv'</a><a href="#" class="hover:underline">Les formations musicales</a>
+            </nav>
+        </div>
+        <div class="border-t border-au-line">
+            <div class="max-w-6xl mx-auto px-4 py-5 flex flex-wrap gap-x-5 gap-y-2 text-xs text-au-grey">
+                <a href="#" class="hover:underline">Accessibilité</a><a href="#" class="hover:underline">Conditions générales d'utilisation</a><a href="#" class="hover:underline">Mentions légales</a><a href="#" class="hover:underline">Protection des données</a><a href="#" class="hover:underline">Gestion des cookies</a><span class="md:ml-auto">© 2026 Radio France</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Carrousel : flèches, points, pause, glisser au doigt, défilement automatique (6 s)
+        (function () {
+            const slides = Array.from(document.querySelectorAll('#carousel .slide'));
+            const dotsBox = document.getElementById('dots');
+            let i = 0, timer = null, paused = false;
+            slides.forEach((_, k) => {
+                const b = document.createElement('button');
+                b.className = 'h-1.5 rounded-full transition-all ' + (k === 0 ? 'w-8 bg-au-ink' : 'w-4 bg-au-line');
+                b.setAttribute('aria-label', 'Afficher l\'offre ' + (k + 1));
+                b.onclick = () => { go(k); restart(); };
+                dotsBox.appendChild(b);
+            });
+            const dots = Array.from(dotsBox.children);
+            function go(n) {
+                slides[i].classList.remove('is-active');
+                dots[i].className = 'h-1.5 rounded-full transition-all w-4 bg-au-line';
+                i = (n + slides.length) % slides.length;
+                slides[i].classList.add('is-active');
+                dots[i].className = 'h-1.5 rounded-full transition-all w-8 bg-au-ink';
+            }
+            function restart() { clearInterval(timer); if (!paused) timer = setInterval(() => go(i + 1), 6000); }
+            document.getElementById('next').onclick = () => { go(i + 1); restart(); };
+            document.getElementById('prev').onclick = () => { go(i - 1); restart(); };
+            document.getElementById('pause').onclick = function () {
+                paused = !paused;
+                document.getElementById('ico-pause').classList.toggle('hidden', paused);
+                document.getElementById('ico-play').classList.toggle('hidden', !paused);
+                this.setAttribute('aria-label', paused ? 'Relancer le défilement' : 'Mettre en pause le défilement');
+                restart();
+            };
+            let x0 = null;
+            const box = document.getElementById('carousel');
+            box.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+            box.addEventListener('touchend', e => {
+                if (x0 === null) return;
+                const dx = e.changedTouches[0].clientX - x0;
+                if (Math.abs(dx) > 40) { go(i + (dx < 0 ? 1 : -1)); restart(); }
+                x0 = null;
+            });
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { document.getElementById('pause').click(); } else { restart(); }
+        })();
+    </script>
+    <script>
+        // Filtre par catégorie (home)
+        (function () {
+            const chips = document.querySelectorAll('#filtres .chip');
+            const offres = document.querySelectorAll('.offre');
+            chips.forEach(c => c.addEventListener('click', () => {
+                chips.forEach(x => x.setAttribute('aria-pressed', x === c));
+                let n = 0;
+                offres.forEach(o => { const ok = c.dataset.f === 'all' || o.dataset.cat === c.dataset.f; o.classList.toggle('hidden', !ok); if (ok) n++; });
+                document.getElementById('vide').classList.toggle('hidden', n > 0);
+            }));
+        })();
+    </script>
+</body>
+</html>

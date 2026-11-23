@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Offre - Espace Avantages (V5)</title>
+    <!--
+      V5 : reprise de la maquette V4 d'Emmanuelle (RnD) avec les remarques du 18/11/2026
+      - Logo l'Auditorium en haut à gauche, « Réservé aux abonnés » en petit, logo Radio France noir à droite
+      - Polices de la newsletter et du site de la Maison de la Radio : Castoro (titres), Fira Sans (texte)
+      - Plus de bleu Radio France : boutons noirs comme les boutons « Réserver » du site de la Maison de la Radio
+      - Peu de noir / gris foncé : fonds blancs et crème
+      - Pas de bloc « Rechercher une offre » sur la home : bouton « Voir toutes les offres »
+      - Carrousel : photo dominante, titre court qui ne recouvre plus l'image, bouton plus discret
+      - Plus d'offres visibles, boutons hiérarchisés, présentation de l'EA en 3 points
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Castoro:ital@0;1&family=Fira+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'au-ink': '#212529',     // texte et boutons (site Maison de la Radio)
+                        'au-grey': '#727272',    // infos secondaires
+                        'au-cream': '#FBF8F6',   // fonds de mise en avant
+                        'au-line': '#E7E2DD',    // filets
+                        'fm': '#A80041',         // pastille France Musique (NL)
+                        'fc': '#752A83',         // pastille France Culture (NL)
+                        'fi': '#E20134'          // pastille France Inter (à confirmer)
+                    },
+                    fontFamily: {
+                        serif: ['Castoro', 'Georgia', 'serif'],
+                        sans: ['"Fira Sans"', 'Arial', 'sans-serif'],
+                        nl: ['Georgia', '"Times New Roman"', 'serif']   // titres de la newsletter
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { scrollbar-width: none; }
+        .slide { display: none; }
+        .slide.is-active { display: grid; }
+        details > summary { list-style: none; cursor: pointer; }
+        details > summary::-webkit-details-marker { display: none; }
+        details[open] .chev { transform: rotate(180deg); }
+        :focus-visible { outline: 2px solid #212529; outline-offset: 3px; }
+        .chip { flex-shrink: 0; height: 2.5rem; padding: 0 1.1rem; border: 1px solid #E7E2DD; border-radius: 999px; font-size: 14px; background: #fff; white-space: nowrap; transition: background .15s, color .15s, border-color .15s; }
+        .chip:hover { border-color: #212529; }
+        .chip[aria-pressed="true"] { background: #212529; border-color: #212529; color: #fff; }
+    </style>
+</head>
+<body class="bg-white text-au-ink font-sans antialiased">
+
+    <!-- ============ HAUT DE PAGE ============ -->
+    <header class="sticky top-0 z-30 bg-white/95 backdrop-blur border-b border-au-line">
+        <div class="max-w-6xl mx-auto px-4 h-16 md:h-20 flex items-center justify-between gap-4">
+            <a href="avantage-v5.html" class="flex items-center gap-2.5 sm:gap-3 shrink-0" aria-label="Espace Avantages, accueil">
+                <img src="img/auditorium_logo.png" alt="l'Auditorium de Radio France" class="h-8 sm:h-9 md:h-12 w-auto">
+                <span class="block border-l border-au-line pl-2.5 sm:pl-3 leading-tight">
+                    <span class="block font-nl text-[15px] sm:text-lg md:text-xl leading-none whitespace-nowrap">Espace Avantages</span>
+                    <span class="block text-[11px] sm:text-xs text-au-grey mt-0.5">Réservé aux abonnés</span>
+                </span>
+            </a>
+
+            <nav class="hidden lg:flex items-center gap-7 text-[15px]" aria-label="Menu principal">
+                <a href="offres.html" class="hover:underline underline-offset-4">Toutes les offres</a>
+                <a href="#programme" class="hover:underline underline-offset-4">Le programme</a>
+                <a href="#faq" class="hover:underline underline-offset-4">Questions fréquentes</a>
+            </nav>
+
+            <div class="flex items-center gap-4 md:gap-6">
+                <a href="#" class="flex items-center gap-2 text-sm font-medium hover:underline underline-offset-4">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>
+                    <span class="hidden md:inline">Se connecter</span>
+                </a>
+                <img src="img/rf_logo_noir.svg" alt="Radio France" class="hidden sm:block h-5 md:h-6 w-auto">
+                <button class="lg:hidden p-1" aria-label="Ouvrir le menu">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+    <div class="max-w-6xl mx-auto px-4 pt-6 md:pt-10 pb-16 md:pb-24">
+        <p class="text-sm text-au-grey"><a href="avantage-v5.html" class="hover:underline">Accueil</a> › <a href="offres.html" class="hover:underline">Toutes les offres</a> › <span id="fil"></span></p>
+
+        <div class="mt-6 md:mt-8 grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12">
+            <!-- Visuel -->
+            <div class="md:col-span-5">
+                <div class="md:sticky md:top-28 aspect-[540/620] bg-au-cream rounded-sm overflow-hidden">
+                    <img id="visuel" src="" alt="" class="w-full h-full object-contain">
+                </div>
+            </div>
+
+            <!-- Infos -->
+            <div class="md:col-span-7">
+                <p id="etiquette" class="flex items-center gap-2 text-xs uppercase tracking-wider text-au-grey"></p>
+                <h1 id="titre" class="font-serif text-3xl md:text-5xl leading-tight mt-3"></h1>
+                <ul id="quand" class="mt-4 space-y-1 text-[15px] text-au-ink/80"></ul>
+
+                <p class="mt-5 inline-flex flex-wrap items-center gap-2 text-sm"><span class="px-2.5 py-1 rounded-full bg-au-cream" id="formule"></span><span id="pour" class="text-au-ink/80"></span><span id="statut-haut"></span></p>
+
+                <div class="mt-10">
+                    <h2 class="font-serif text-2xl">Descriptif</h2>
+                    <div id="descriptif" class="mt-3 space-y-3 text-[16px] leading-relaxed text-au-ink/90"></div>
+                </div>
+                <div class="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-4">
+                    <div class="bg-au-cream rounded-md p-5 md:p-6">
+                        <h2 class="font-serif text-xl">Modalités d'accès</h2>
+                        <div id="modalites" class="mt-2 space-y-2 text-[15px] leading-relaxed text-au-ink/90"></div>
+                    </div>
+                    <!-- Réservation : après la lecture du descriptif -->
+                    <div id="reserver" class="border border-au-ink rounded-md p-5 md:p-6 flex flex-col scroll-mt-28">
+                        <h2 class="font-serif text-xl">Réserver</h2>
+                        <p class="mt-2 text-[15px] text-au-ink/80" id="resa-texte"></p>
+                        <div class="mt-auto pt-5 flex flex-wrap items-center gap-4" id="cta"></div>
+                    </div>
+                </div>
+                <p class="mt-6 text-xs text-au-grey">Prototype : contenu repris de la <a id="source" href="#" target="_blank" rel="noopener" class="underline">fiche actuelle</a>.</p>
+            </div>
+        </div>
+
+        <!-- Autres offres -->
+        <section class="mt-16 md:mt-24">
+            <div class="flex items-baseline justify-between gap-4 border-b border-au-line pb-3 mb-5">
+                <h2 class="font-serif text-xl md:text-2xl">Vous aimerez aussi</h2>
+                <a href="offres.html" class="text-sm underline underline-offset-4 shrink-0">Toutes les offres →</a>
+            </div>
+            <div id="autres" class="flex md:grid md:grid-cols-4 gap-4 md:gap-5 overflow-x-auto md:overflow-visible snap-x snap-mandatory scroll-px-4 md:scroll-px-0 no-scrollbar -mx-4 px-4 after:content-[''] after:shrink-0 after:w-px md:after:hidden md:mx-0 md:px-0"></div>
+        </section>
+    </div>
+
+
+    <!-- Réservation en 3 étapes (simulation) -->
+    <div id="modale" class="hidden fixed inset-0 z-40 bg-black/40 flex items-end md:items-center justify-center" role="dialog" aria-modal="true" aria-labelledby="m-titre">
+        <div class="bg-white w-full md:max-w-lg rounded-t-lg md:rounded-sm p-6 md:p-8 max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between">
+                <p class="text-xs uppercase tracking-wider text-au-grey">Réserver en 3 clics · étape <span id="m-etape">1</span>/3</p>
+                <button id="m-fermer" class="w-9 h-9 grid place-items-center rounded-full hover:bg-au-cream" aria-label="Fermer">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+                </button>
+            </div>
+            <div class="mt-3 h-1 bg-au-line rounded-full overflow-hidden"><div id="m-barre" class="h-full bg-au-ink transition-all" style="width:33%"></div></div>
+            <h2 id="m-titre" class="font-serif text-2xl mt-5"></h2>
+
+            <div data-etape="1" class="mt-4">
+                <p class="text-[15px] text-au-ink/80">Choisissez votre date :</p>
+                <label class="mt-3 flex items-center gap-3 border border-au-ink rounded-sm p-4 cursor-pointer">
+                    <input type="radio" name="date" checked class="accent-[#212529]"><span id="m-date" class="text-[15px]"></span>
+                </label>
+                <button data-suivant class="mt-6 w-full h-11 bg-au-ink text-white text-sm font-medium rounded-sm hover:bg-black">Continuer</button>
+            </div>
+            <div data-etape="2" class="mt-4 hidden">
+                <p class="text-[15px] text-au-ink/80">Vous souhaitez réserver :</p>
+                <p id="m-recap" class="mt-2 font-medium"></p>
+                <p class="mt-3 text-sm text-au-grey">Avec le compte : Marie Dupont · abonnée n° 000000 (exemple)</p>
+                <div class="mt-6 flex gap-3">
+                    <button data-precedent class="flex-1 h-11 border border-au-ink text-sm font-medium rounded-sm">Retour</button>
+                    <button data-suivant class="flex-1 h-11 bg-au-ink text-white text-sm font-medium rounded-sm hover:bg-black">Confirmer</button>
+                </div>
+            </div>
+            <div data-etape="3" class="mt-4 hidden">
+                <div class="flex items-center gap-3">
+                    <span class="w-9 h-9 grid place-items-center rounded-full bg-au-ink text-white"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg></span>
+                    <p class="font-medium">Votre réservation est enregistrée.</p>
+                </div>
+                <p id="m-suite" class="mt-4 text-[15px] text-au-ink/80"></p>
+                <button id="m-ok" class="mt-6 w-full h-11 border border-au-ink text-sm font-medium rounded-sm">Revenir à l'offre</button>
+            </div>
+        </div>
+    </div>
+    </main>
+
+    <!-- ============ PIED DE PAGE ============ -->
+    <footer class="bg-au-cream border-t border-au-line">
+        <div class="max-w-6xl mx-auto px-4 py-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <img src="img/auditorium_logo.png" alt="l'Auditorium de Radio France" class="h-10 w-auto self-start">
+            <nav class="flex flex-wrap gap-x-5 gap-y-2 text-sm text-au-ink/80" aria-label="Chaînes Radio France">
+                <a href="#" class="hover:underline">France Inter</a><a href="#" class="hover:underline">franceinfo</a><a href="#" class="hover:underline">ici</a><a href="#" class="hover:underline">France Culture</a><a href="#" class="hover:underline">France Musique</a><a href="#" class="hover:underline">Fip</a><a href="#" class="hover:underline">Mouv'</a><a href="#" class="hover:underline">Les formations musicales</a>
+            </nav>
+        </div>
+        <div class="border-t border-au-line">
+            <div class="max-w-6xl mx-auto px-4 py-5 flex flex-wrap gap-x-5 gap-y-2 text-xs text-au-grey">
+                <a href="#" class="hover:underline">Accessibilité</a><a href="#" class="hover:underline">Conditions générales d'utilisation</a><a href="#" class="hover:underline">Mentions légales</a><a href="#" class="hover:underline">Protection des données</a><a href="#" class="hover:underline">Gestion des cookies</a><span class="md:ml-auto">© 2026 Radio France</span>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="offres-data.js"></script>
+    <script>
+    (function () {
+        const CH = { fi: 'bg-fi', fc: 'bg-fc', fm: 'bg-fm', au: 'bg-au-ink', mouv: 'bg-[#5CFFA6]' };
+        const id = new URLSearchParams(location.search).get('id');
+        const o = OFFRES.find(x => x.id === id) || OFFRES[0];
+        const $ = s => document.getElementById(s);
+        const esc = t => t.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+        document.title = o.titreCourt + ' - Espace Avantages (V5)';
+        $('fil').textContent = o.titreCourt;
+        $('visuel').src = 'img/' + o.img; $('visuel').alt = o.titreCourt;
+        $('etiquette').innerHTML = '<span class="w-2.5 h-2.5 ' + (CH[o.pastille] || 'bg-au-line') + '"></span>' + esc(o.etiquette);
+        $('titre').textContent = o.titreCourt;
+        const q = o.quand.length ? (o.quand[0].startsWith('Sortie') ? [o.quand.join(' ')] : [o.quand[0], o.quand.slice(1).join(' ')]) : [o.meta];
+        $('quand').innerHTML = q.filter(Boolean).map(t => '<li>' + esc(t) + '</li>').join('');
+        $('formule').textContent = o.formule;
+        $('pour').textContent = o.pour.charAt(0).toUpperCase() + o.pour.slice(1);
+        $('descriptif').innerHTML = o.descriptif.map((p, i) => '<p' + (i === 0 ? ' class="font-medium"' : '') + '>' + esc(p) + '</p>').join('');
+        $('modalites').innerHTML = o.modalites.map(p => '<p>' + esc(p) + '</p>').join('');
+        $('source').href = o.source;
+        const ouvert = !o.complet;
+        const btn = '<button data-ouvrir class="inline-flex items-center h-11 px-6 bg-au-ink text-white text-sm font-medium rounded-sm hover:bg-black transition">Réserver</button>';
+        const complet = '<span class="inline-flex items-center h-11 px-6 border border-au-line text-au-grey text-sm rounded-sm">Offre complète</span>';
+        $('cta').innerHTML = ouvert ? btn : complet + '<a href="offres.html" class="text-sm underline underline-offset-4">Voir les offres disponibles</a>';
+        $('resa-texte').textContent = ouvert ? o.formule + ' ' + o.pour.toLowerCase() + '. Une réservation par mois et par abonné.'
+                                             : 'Toutes les places de cette offre ont été réservées.';
+        $('statut-haut').innerHTML = ouvert ? '<a href="#reserver" class="underline underline-offset-4 text-au-grey">Lire puis réserver ↓</a>' : '<span class="text-au-grey">· Offre complète</span>';
+        // Autres offres : même catégorie d'abord
+        const autres = OFFRES.filter(x => x.id !== o.id).sort((a, b) => (b.cat === o.cat) - (a.cat === o.cat)).slice(0, 4);
+        $('autres').innerHTML = autres.map(x => '<a href="offre.html?id=' + x.id + '" class="group snap-start shrink-0 w-[44%] sm:w-[30%] md:w-auto bg-white border border-au-line rounded-md p-3 md:p-3.5 hover:border-au-ink/40 hover:shadow-[0_6px_20px_-12px_rgba(0,0,0,0.25)] transition">' +
+            '<div class="aspect-[540/620] overflow-hidden bg-au-cream rounded"><img src="img/' + x.img + '" alt="" class="w-full h-full object-contain group-hover:scale-[1.03] transition duration-300"></div>' +
+            '<p class="mt-2.5 flex items-center gap-1.5 text-[11px] uppercase tracking-wider text-au-grey"><span class="w-2 h-2 shrink-0 ' + (CH[x.pastille] || 'bg-au-line') + '"></span>' + esc(x.etiquette) + '</p>' +
+            '<h3 class="mt-1 font-serif text-[15px] md:text-base leading-snug group-hover:underline underline-offset-4">' + esc(x.titreCourt) + '</h3>' +
+            '<p class="mt-1 text-sm ' + (x.complet ? 'text-au-grey">Complet' : 'font-medium">' + esc(x.formule)) + '</p></a>').join('');
+        // Réservation en 3 étapes
+        const m = $('modale'); let etape = 1;
+        function montre(n) {
+            etape = n; $('m-etape').textContent = n; $('m-barre').style.width = (n * 33.4) + '%';
+            m.querySelectorAll('[data-etape]').forEach(d => d.classList.toggle('hidden', +d.dataset.etape !== n));
+        }
+        $('m-titre').textContent = o.titreCourt;
+        $('m-date').textContent = o.quand.length ? o.quand.join(' ') : 'Envoi par La Poste à votre adresse';
+        $('m-recap').textContent = o.formule + ' ' + o.pour.toLowerCase() + ' · ' + $('m-date').textContent;
+        $('m-suite').textContent = (o.modalites[0] || '') + ' Un e-mail de confirmation vous est envoyé.';
+        document.addEventListener('click', ev => {
+            if (ev.target.closest('[data-ouvrir]')) { montre(1); m.classList.remove('hidden'); document.body.style.overflow = 'hidden'; }
+            if (ev.target.closest('[data-suivant]')) montre(etape + 1);
+            if (ev.target.closest('[data-precedent]')) montre(etape - 1);
+            if (ev.target.closest('#m-fermer, #m-ok') || ev.target === m) { m.classList.add('hidden'); document.body.style.overflow = ''; }
+        });
+    })();
+    </script>
+</body>
+</html>
