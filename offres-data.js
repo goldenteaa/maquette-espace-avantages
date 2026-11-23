@@ -317,7 +317,7 @@ window.OFFRES = [
   "id": "pack-collector-mouv-tour-de-cou-et-porte-carte",
   "titre": "Pack collector Mouv' - Tour de cou et porte-carte",
   "type": "Accessoire",
-  "img": "pack_mouv.png",
+  "img": "pack_mouv.jpg",
   "quand": [],
   "chaine": "Mouv'",
   "pastille": "mouv",
