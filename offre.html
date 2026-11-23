@@ -138,10 +138,10 @@
             <div data-etape="2" class="mt-4 hidden">
                 <p class="text-[15px] text-au-ink/80">Vous souhaitez réserver :</p>
                 <p id="m-recap" class="mt-2 font-medium"></p>
-                <p class="mt-3 text-sm text-au-grey">Avec le compte : Marie Dupont · abonnée n° 000000 (exemple)</p>
+                <p class="mt-3 text-sm text-au-grey" id="m-compte"></p>
                 <div class="mt-6 flex gap-3">
                     <button data-precedent class="flex-1 h-11 border border-au-ink text-sm font-medium rounded-sm">Retour</button>
-                    <button data-suivant class="flex-1 h-11 bg-au-ink text-white text-sm font-medium rounded-sm hover:bg-black">Confirmer</button>
+                    <button data-suivant data-confirmer class="flex-1 h-11 bg-au-ink text-white text-sm font-medium rounded-sm hover:bg-black">Confirmer</button>
                 </div>
             </div>
             <div data-etape="3" class="mt-4 hidden">
@@ -150,7 +150,7 @@
                     <p class="font-medium">Votre réservation est enregistrée.</p>
                 </div>
                 <p id="m-suite" class="mt-4 text-[15px] text-au-ink/80"></p>
-                <button id="m-ok" class="mt-6 w-full h-11 border border-au-ink text-sm font-medium rounded-sm">Revenir à l'offre</button>
+                <div class="mt-6 flex gap-3"><a href="mon-compte.html" class="flex-1 h-11 inline-flex items-center justify-center bg-au-ink text-white text-sm font-medium rounded-sm hover:bg-black">Voir mes réservations</a><button id="m-ok" class="flex-1 h-11 border border-au-ink text-sm font-medium rounded-sm">Revenir à l'offre</button></div>
             </div>
         </div>
     </div>
@@ -171,6 +171,7 @@
         </div>
     </footer>
 
+    <script src="auth.js"></script>
 
     <script src="offres-data.js"></script>
     <script>
@@ -193,11 +194,20 @@
         $('modalites').innerHTML = o.modalites.map(p => '<p>' + esc(p) + '</p>').join('');
         $('source').href = o.source;
         const ouvert = !o.complet;
+        const u = EA.utilisateur();
+        const resaMois = EA.reservationDuMois();
+        const lien = (href, t) => '<a href="' + href + '" class="text-sm underline underline-offset-4">' + t + '</a>';
         const btn = '<button data-ouvrir class="inline-flex items-center h-11 px-6 bg-au-ink text-white text-sm font-medium rounded-sm hover:bg-black transition">Réserver</button>';
-        const complet = '<span class="inline-flex items-center h-11 px-6 border border-au-line text-au-grey text-sm rounded-sm">Offre complète</span>';
-        $('cta').innerHTML = ouvert ? btn : complet + '<a href="offres.html" class="text-sm underline underline-offset-4">Voir les offres disponibles</a>';
-        $('resa-texte').textContent = ouvert ? o.formule + ' ' + o.pour.toLowerCase() + '. Une réservation par mois et par abonné.'
-                                             : 'Toutes les places de cette offre ont été réservées.';
+        const gris = t => '<span class="inline-flex items-center h-11 px-6 border border-au-line text-au-grey text-sm rounded-sm">' + t + '</span>';
+        let cta, texte;
+        if (!ouvert) { cta = gris('Offre complète') + lien('offres.html', 'Voir les offres disponibles'); texte = 'Toutes les places de cette offre ont été réservées.'; }
+        else if (!u) { cta = '<a href="' + EA.lienConnexion() + '" class="inline-flex items-center h-11 px-6 bg-au-ink text-white text-sm font-medium rounded-sm hover:bg-black transition">Se connecter pour réserver</a>';
+                       texte = o.formule + ' ' + o.pour.toLowerCase() + '. Réservé aux abonnés : connectez-vous avec votre compte billetterie.'; }
+        else if (resaMois && resaMois.id === o.id) { cta = gris('Déjà réservée') + lien('mon-compte.html', 'Voir mes réservations'); texte = 'Vous avez réservé cette offre. Votre confirmation est dans « Mon compte ».'; }
+        else if (resaMois) { cta = gris('Avantage du mois déjà utilisé') + lien('mon-compte.html', 'Mon compte'); texte = 'Une réservation par mois et par abonné : vous avez déjà réservé « ' + resaMois.titre + ' » ce mois-ci.'; }
+        else { cta = btn; texte = o.formule + ' ' + o.pour.toLowerCase() + '. Une réservation par mois et par abonné.'; }
+        $('cta').innerHTML = cta;
+        $('resa-texte').textContent = texte;
         $('statut-haut').innerHTML = ouvert ? '<a href="#reserver" class="underline underline-offset-4 text-au-grey">Lire puis réserver ↓</a>' : '<span class="text-au-grey">· Offre complète</span>';
         // Autres offres : même catégorie d'abord
         const autres = OFFRES.filter(x => x.id !== o.id).sort((a, b) => (b.cat === o.cat) - (a.cat === o.cat)).slice(0, 4);
@@ -215,12 +225,14 @@
         $('m-titre').textContent = o.titreCourt;
         $('m-date').textContent = o.quand.length ? o.quand.join(' ') : 'Envoi par La Poste à votre adresse';
         $('m-recap').textContent = o.formule + ' ' + o.pour.toLowerCase() + ' · ' + $('m-date').textContent;
-        $('m-suite').textContent = (o.modalites[0] || '') + ' Un e-mail de confirmation vous est envoyé.';
+        if (u) $('m-compte').textContent = 'Avec le compte : ' + u.prenom + ' ' + u.nom + ' · abonnée n° ' + u.numero;
+        $('m-suite').textContent = (o.modalites[0] || '') + (u ? ' Un e-mail de confirmation est envoyé à ' + u.email + '.' : '');
         document.addEventListener('click', ev => {
             if (ev.target.closest('[data-ouvrir]')) { montre(1); m.classList.remove('hidden'); document.body.style.overflow = 'hidden'; }
+            if (ev.target.closest('[data-confirmer]')) EA.ajouterReservation({ id: o.id, titre: o.titreCourt, img: o.img, formule: o.formule + ' ' + o.pour.toLowerCase(), quand: $('m-date').textContent, date: new Date().toISOString() });
             if (ev.target.closest('[data-suivant]')) montre(etape + 1);
             if (ev.target.closest('[data-precedent]')) montre(etape - 1);
-            if (ev.target.closest('#m-fermer, #m-ok') || ev.target === m) { m.classList.add('hidden'); document.body.style.overflow = ''; }
+            if (ev.target.closest('#m-fermer, #m-ok') || ev.target === m) { const fait = etape === 3; m.classList.add('hidden'); document.body.style.overflow = ''; if (fait) location.reload(); }
         });
     })();
     </script>

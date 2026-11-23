@@ -9,14 +9,22 @@ LES PAGES
 - avantage-v5.html : page d'accueil (carrousel, offres du moment avec filtre par catégorie, programme fidélité, prochainement, FAQ)
 - offres.html      : toutes les offres, rangées par catégorie
 - offre.html       : fiche d'une offre (ouverte en cliquant sur une offre) avec réservation en 3 étapes simulée
+- connexion.html   : connexion (simulée) avec un compte test
+- mon-compte.html  : informations de l'abonné, avantage du mois, historique des réservations
 
 LES AUTRES ÉLÉMENTS
 - img/             : logos (Auditorium, Radio France en noir) et visuels des offres
 - offres-data.js   : contenu des 16 offres, repris du site actuel le 18/11/2026
 - outils/          : scripts qui ont servi à récupérer les offres et à générer les pages
 
+COMPTE TEST
+- E-mail : demo@espace-avantages.fr
+- Mot de passe : auditorium
+- Une fois connecté, réservez « Avoaha » puis ouvrez « Mon compte ». Le bouton « Réinitialiser la démo » (dans Mon compte) efface les réservations faites pendant la démo.
+- La connexion est simulée dans le navigateur : rien n'est envoyé, aucun vrai compte n'est utilisé.
+
 À SAVOIR
-- Prototype : rien n'est réellement réservé, le compte affiché est fictif.
+- Prototype : rien n'est réellement réservé, le compte et l'historique sont fictifs.
 - Seule l'offre « Avoaha » est réservable (les autres étaient complètes sur le site).
 
 LIENS

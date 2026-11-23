@@ -224,15 +224,26 @@
         </div>
     </section>
 
+    <!-- ============ ABONNÉ CONNECTÉ ============ -->
+    <section data-si-connecte class="hidden max-w-6xl mx-auto px-4 pt-14 md:pt-20">
+        <div class="bg-au-cream px-6 py-7 md:px-10 md:py-8 flex flex-col md:flex-row md:items-center justify-between gap-5 rounded-md">
+            <div>
+                <h2 class="font-serif text-xl md:text-2xl">Bonjour <span data-prenom></span>,</h2>
+                <p class="mt-1 text-[15px] text-au-ink/80" data-etat-mois></p>
+            </div>
+            <a href="mon-compte.html" class="shrink-0 inline-flex items-center h-11 px-6 border border-au-ink bg-white text-sm font-medium rounded-sm hover:bg-au-ink hover:text-white transition">Mon compte et mes réservations</a>
+        </div>
+    </section>
+
     <!-- ============ NON-ABONNÉS ============ -->
-    <section class="max-w-6xl mx-auto px-4 pt-14 md:pt-20">
+    <section data-si-deconnecte class="max-w-6xl mx-auto px-4 pt-14 md:pt-20">
         <div class="bg-au-cream px-6 py-7 md:px-10 md:py-8 flex flex-col md:flex-row md:items-center justify-between gap-5 rounded-sm">
             <div>
                 <h2 class="font-serif text-xl md:text-2xl">Vous n'êtes pas encore abonné ?</h2>
                 <p class="mt-1 text-[15px] text-au-ink/80">Abonnez-vous aux concerts de Radio France et profitez de ces avantages toute l'année.</p>
             </div>
             <div class="flex flex-wrap gap-3 shrink-0">
-                <a href="#" class="inline-flex items-center h-11 px-6 border border-au-ink bg-white text-sm font-medium rounded-sm hover:bg-au-ink hover:text-white transition">Se connecter</a>
+                <a href="connexion.html" class="inline-flex items-center h-11 px-6 border border-au-ink bg-white text-sm font-medium rounded-sm hover:bg-au-ink hover:text-white transition">Se connecter</a>
                 <a href="#" class="inline-flex items-center h-11 px-6 bg-au-ink text-white text-sm font-medium rounded-sm hover:bg-black transition">S'abonner</a>
             </div>
         </div>
@@ -384,5 +395,6 @@
             }));
         })();
     </script>
+    <script src="auth.js"></script>
 </body>
 </html>
