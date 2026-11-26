@@ -38,7 +38,13 @@
         .chip[aria-pressed="true"] { background: #212529; border-color: #212529; color: #fff; }
         /* Dégradés de la newsletter, en touches discrètes */
         .bandeau-degrade { position: relative; background: #fff; isolation: isolate; }
-        .bandeau-degrade::before { content: ''; position: absolute; inset: 0; z-index: -1; background: url(img/degrade-large.jpg) center bottom / cover no-repeat; opacity: .55; }
+        .bandeau-degrade::before { content: ''; position: absolute; inset: 0; z-index: -1; opacity: .6; filter: blur(24px);
+            /* même dégradé que la newsletter, recentré : rose à gauche, rose clair au centre, violet et vieux rose à droite */
+            background:
+                radial-gradient(28% 42% at 22% 52%, rgba(239,150,200,.45), transparent 70%),
+                radial-gradient(30% 38% at 50% 56%, rgba(246,186,222,.40), transparent 72%),
+                radial-gradient(24% 40% at 74% 50%, rgba(190,140,200,.42), transparent 70%),
+                radial-gradient(22% 34% at 84% 58%, rgba(220,140,180,.35), transparent 70%); }
         @media (hover: hover) {
             a.group.border[href^="offre.html"] { position: relative; }
             a.group.border[href^="offre.html"]::before { content: ''; position: absolute; inset: 30% -26px -34px; z-index: -1; background: url(img/degrade-centre.jpg) center / 100% 100% no-repeat; opacity: 0; transition: opacity .45s ease; filter: saturate(1.15); pointer-events: none; }
