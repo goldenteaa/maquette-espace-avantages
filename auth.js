@@ -59,6 +59,22 @@
             ? 'Vous avez déjà profité de votre avantage ce mois-ci (« ' + r.titre + ' »).'
             : 'Votre avantage du mois est disponible : choisissez une offre ouverte à la réservation.';
     }
-    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', majEntete); else majEntete();
+    // Menu burger (téléphone et tablette)
+    function initMenu() {
+        var btn = document.getElementById('burger'), menu = document.getElementById('menu-mobile');
+        if (!btn || !menu) return;
+        function basculer(ouvrir) {
+            menu.classList.toggle('hidden', !ouvrir);
+            btn.setAttribute('aria-expanded', ouvrir);
+            btn.setAttribute('aria-label', ouvrir ? 'Fermer le menu' : 'Ouvrir le menu');
+            btn.querySelector('[data-ico="ouvrir"]').classList.toggle('hidden', ouvrir);
+            btn.querySelector('[data-ico="fermer"]').classList.toggle('hidden', !ouvrir);
+        }
+        btn.addEventListener('click', function () { basculer(menu.classList.contains('hidden')); });
+        menu.addEventListener('click', function (e) { if (e.target.closest('a')) basculer(false); });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') basculer(false); });
+    }
+    function init() { majEntete(); initMenu(); }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
     EA.majEntete = majEntete;
 })();

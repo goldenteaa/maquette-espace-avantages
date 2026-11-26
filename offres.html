@@ -18,7 +18,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Castoro:ital@0;1&family=Fira+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=202611261200">
+    <link rel="stylesheet" href="style.css?v=202611261517">
     <style>
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { scrollbar-width: none; }
@@ -61,8 +61,8 @@
 
             <nav class="hidden lg:flex items-center gap-5 xl:gap-7 text-[15px] whitespace-nowrap" aria-label="Menu principal">
                 <a href="offres.html" class="hover:underline underline-offset-4">Toutes les offres</a>
-                <a href="#programme" class="hover:underline underline-offset-4">Le programme</a>
-                <a href="#faq" class="hover:underline underline-offset-4">Questions fréquentes</a>
+                <a href="avantage-v5.html#programme" class="hover:underline underline-offset-4">Le programme</a>
+                <a href="avantage-v5.html#faq" class="hover:underline underline-offset-4">Questions fréquentes</a>
             </nav>
 
             <div class="flex items-center gap-4 md:gap-6">
@@ -70,12 +70,23 @@
                     <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>
                     <span class="hidden md:inline">Se connecter</span>
                 </a>
-                <img src="img/rf_logo_noir.svg" alt="Radio France" class="hidden sm:block h-5 md:h-6 w-auto">
-                <button class="lg:hidden p-1" aria-label="Ouvrir le menu">
-                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+                <img src="img/mrm_logo_noir.svg" alt="Maison de la Radio et de la Musique" class="hidden sm:block h-8 md:h-10 w-auto">
+                <button id="burger" class="lg:hidden p-1" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu-mobile">
+                    <svg data-ico="ouvrir" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+                    <svg data-ico="fermer" class="w-6 h-6 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
                 </button>
             </div>
         </div>
+
+        <!-- Menu mobile et tablette -->
+        <nav id="menu-mobile" class="hidden lg:hidden border-t border-au-line bg-white" aria-label="Menu principal (mobile)">
+            <div class="max-w-6xl mx-auto px-4 py-2 flex flex-col text-[16px]">
+                <a href="offres.html" class="py-3.5 border-b border-au-line">Toutes les offres</a>
+                <a href="avantage-v5.html#programme" class="py-3.5 border-b border-au-line">Le programme</a>
+                <a href="avantage-v5.html#faq" class="py-3.5 border-b border-au-line">Questions fréquentes</a>
+                <a href="connexion.html" class="py-3.5 flex items-center gap-2 font-medium"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span>Se connecter</span></a>
+            </div>
+        </nav>
     </header>
 
     <main>
@@ -259,6 +270,6 @@
         </div>
     </footer>
 
-    <script src="auth.js"></script>
+    <script src="auth.js?v=202611261517"></script>
 </body>
 </html>
